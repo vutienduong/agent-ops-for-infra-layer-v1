@@ -127,3 +127,27 @@ def test_ingest_and_query_runs() -> None:
     detail_payload = detail_resp.json()
     assert detail_payload["run"]["status"] == "success"
     assert len(detail_payload["spans"]) == 1
+
+    prompt_resp = client.post(
+        "/v1/prompts",
+        json={"key": "invoice.summary", "version": "1", "content": "Summarize invoice {{invoice_id}}"},
+        headers=headers,
+    )
+    assert prompt_resp.status_code == 201
+    prompt_id = prompt_resp.json()["id"]
+
+    list_prompts_resp = client.get("/v1/prompts?key=invoice.summary", headers=headers)
+    assert list_prompts_resp.status_code == 200
+    assert len(list_prompts_resp.json()["items"]) == 1
+
+    get_prompt_resp = client.get(f"/v1/prompts/{prompt_id}", headers=headers)
+    assert get_prompt_resp.status_code == 200
+    assert get_prompt_resp.json()["key"] == "invoice.summary"
+
+    cost_day_resp = client.get("/v1/metrics/cost?group_by=day", headers=headers)
+    assert cost_day_resp.status_code == 200
+    assert len(cost_day_resp.json()["items"]) >= 1
+
+    cost_model_resp = client.get("/v1/metrics/cost?group_by=model", headers=headers)
+    assert cost_model_resp.status_code == 200
+    assert any(item["group"] == "gpt-4.1-mini" for item in cost_model_resp.json()["items"])

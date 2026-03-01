@@ -56,3 +56,38 @@ class RunDetail(BaseModel):
 class RunsListResponse(BaseModel):
     items: list[RunSummary]
     next_cursor: str | None = None
+
+
+class PromptVersionCreate(BaseModel):
+    key: str
+    version: str
+    content: str | None = None
+    content_ref: str | None = None
+    meta: dict[str, Any] | None = None
+
+
+class PromptVersionRead(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: str
+    key: str
+    version: str
+    content: str | None = None
+    content_ref: str | None = None
+    meta: dict[str, Any] | None = None
+    created_at: datetime
+
+
+class PromptVersionsListResponse(BaseModel):
+    items: list[PromptVersionRead]
+
+
+class CostMetricItem(BaseModel):
+    group: str
+    total_cost_usd: float
+    total_prompt_tokens: int = 0
+    total_completion_tokens: int = 0
+
+
+class CostMetricsResponse(BaseModel):
+    items: list[CostMetricItem]

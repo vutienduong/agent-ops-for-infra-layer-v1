@@ -40,9 +40,9 @@ Implement the bootstrap MVP from `docs/technical-diagram.md` with an execution o
 - [x] Implement `GET /v1/runs/{run_id}`
 
 ### Phase 3+: placeholders for next execution cycles
-- [ ] Prompt version APIs
+- [x] Prompt version APIs
 - [ ] Replay APIs (llm-only)
-- [ ] Cost metrics endpoint
+- [x] Cost metrics endpoint
 - [ ] Python SDK v0.1
 - [ ] Basic dashboard UI
 
