@@ -168,3 +168,7 @@ def test_ingest_and_query_runs() -> None:
     new_run_resp = client.get(f"/v1/runs/{replay_payload['new_run_id']}", headers=headers)
     assert new_run_resp.status_code == 200
     assert new_run_resp.json()["run"]["status"] == "success"
+
+    dashboard_resp = client.get("/dashboard")
+    assert dashboard_resp.status_code == 200
+    assert "AgentOps MVP Dashboard" in dashboard_resp.text

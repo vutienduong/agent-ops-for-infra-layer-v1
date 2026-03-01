@@ -16,6 +16,10 @@ uvicorn app.main:app --reload
 
 Use `X-AgentOps-Key` for authenticated endpoints.
 
+## Dashboard
+
+Open [http://localhost:8000/dashboard](http://localhost:8000/dashboard), paste your API key, and load runs.
+
 ## Seed local API key
 
 ```bash

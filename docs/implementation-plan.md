@@ -44,7 +44,7 @@ Implement the bootstrap MVP from `docs/technical-diagram.md` with an execution o
 - [x] Replay APIs (llm-only stub, mocked provider execution)
 - [x] Cost metrics endpoint
 - [x] Python SDK v0.1 (core run/span tracking + ingest flush)
-- [ ] Basic dashboard UI
+- [x] Basic dashboard UI
 
 ## Acceptance criteria for this execution
 1. [x] Service starts with `uvicorn app.main:app`.

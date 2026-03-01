@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
+from app.api.dashboard import router as dashboard_router
 from app.api.ingest import router as ingest_router
 from app.api.metrics import router as metrics_router
 from app.api.prompts import router as prompts_router
@@ -32,3 +33,4 @@ app.include_router(runs_router)
 app.include_router(prompts_router)
 app.include_router(replays_router)
 app.include_router(metrics_router)
+app.include_router(dashboard_router)
