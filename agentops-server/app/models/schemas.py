@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class IngestResponse(BaseModel):
@@ -14,6 +14,8 @@ class IngestResponse(BaseModel):
 
 
 class RunSummary(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: str
     trace_id: str | None
     name: str | None
@@ -27,11 +29,9 @@ class RunSummary(BaseModel):
     model_summary: dict[str, Any] | None = None
     tags: dict[str, Any] | None = None
 
-    class Config:
-        from_attributes = True
-
-
 class SpanDetail(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: str
     parent_span_id: str | None
     type: str
@@ -47,10 +47,6 @@ class SpanDetail(BaseModel):
     input_json: dict[str, Any] | None = None
     output_json: dict[str, Any] | None = None
     error_json: dict[str, Any] | None = None
-
-    class Config:
-        from_attributes = True
-
 
 class RunDetail(BaseModel):
     run: RunSummary

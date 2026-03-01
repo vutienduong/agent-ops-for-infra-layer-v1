@@ -47,10 +47,10 @@ Implement the bootstrap MVP from `docs/technical-diagram.md` with an execution o
 - [ ] Basic dashboard UI
 
 ## Acceptance criteria for this execution
-1. Service starts with `uvicorn app.main:app`.
-2. Authenticated ingest accepts valid events and deduplicates retries by `event_id`.
-3. Listing runs returns normalized run summaries.
-4. Run detail returns spans timeline.
+1. [x] Service starts with `uvicorn app.main:app`.
+2. [x] Authenticated ingest accepts valid events and deduplicates retries by `event_id`.
+3. [x] Listing runs returns normalized run summaries.
+4. [x] Run detail returns spans timeline.
 
 ## Notes
 - Server derives `project_id` from API key and does not trust `project.id` in event payload.
