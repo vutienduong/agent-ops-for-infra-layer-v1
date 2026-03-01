@@ -91,3 +91,21 @@ class CostMetricItem(BaseModel):
 
 class CostMetricsResponse(BaseModel):
     items: list[CostMetricItem]
+
+
+class ReplayCreate(BaseModel):
+    source_run_id: str
+    mode: str = "llm_only"
+    overrides: dict[str, Any] | None = None
+
+
+class ReplayRead(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: str
+    run_id: str
+    new_run_id: str | None
+    mode: str
+    overrides: dict[str, Any] | None = None
+    status: str
+    created_at: datetime

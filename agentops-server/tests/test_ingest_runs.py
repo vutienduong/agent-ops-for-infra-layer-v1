@@ -151,3 +151,20 @@ def test_ingest_and_query_runs() -> None:
     cost_model_resp = client.get("/v1/metrics/cost?group_by=model", headers=headers)
     assert cost_model_resp.status_code == 200
     assert any(item["group"] == "gpt-4.1-mini" for item in cost_model_resp.json()["items"])
+
+    replay_resp = client.post(
+        "/v1/replays",
+        json={"source_run_id": "run1", "mode": "llm_only", "overrides": {"model": "gpt-4.1"}},
+        headers=headers,
+    )
+    assert replay_resp.status_code == 201
+    replay_payload = replay_resp.json()
+    assert replay_payload["status"] == "completed"
+    assert replay_payload["new_run_id"] is not None
+
+    replay_status_resp = client.get(f"/v1/replays/{replay_payload['id']}", headers=headers)
+    assert replay_status_resp.status_code == 200
+
+    new_run_resp = client.get(f"/v1/runs/{replay_payload['new_run_id']}", headers=headers)
+    assert new_run_resp.status_code == 200
+    assert new_run_resp.json()["run"]["status"] == "success"
