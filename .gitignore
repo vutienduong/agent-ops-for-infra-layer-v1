@@ -1,0 +1,12 @@
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+agentops-server/.venv/
+agentops-server/*.egg-info/
+agentops-server/agentops_server.egg-info/
+agentops-server/.pytest_cache/

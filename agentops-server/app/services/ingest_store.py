@@ -86,13 +86,13 @@ def ingest_events(db: Session, *, project_id: str, events: list[dict[str, Any]])
             sdk_version=sdk.get("version"),
         )
 
-        db.add(row)
         try:
-            db.flush()
+            with db.begin_nested():
+                db.add(row)
+                db.flush()
             result.accepted += 1
             result.run_ids.add(run_id)
         except IntegrityError:
-            db.rollback()
             result.duplicates += 1
 
     return result

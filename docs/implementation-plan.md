@@ -17,27 +17,27 @@ Implement the bootstrap MVP from `docs/technical-diagram.md` with an execution o
 - [x] Define concrete deliverables for each phase
 
 ### Phase 1: Data plane foundation
-- [ ] Create `agentops-server` project structure
-- [ ] Add FastAPI app entrypoint and router wiring
-- [ ] Add configuration and DB session management
-- [ ] Add SQLAlchemy models and indexes for:
-  - [ ] `projects`
-  - [ ] `api_keys`
-  - [ ] `raw_events` with idempotency uniqueness `(project_id, event_id)`
-  - [ ] `runs`
-  - [ ] `spans`
-- [ ] Implement API key auth (`X-AgentOps-Key`)
-- [ ] Implement `POST /v1/ingest` with:
-  - [ ] batch JSON ingest
-  - [ ] validation for minimal envelope fields
-  - [ ] append-only write into `raw_events`
-  - [ ] accepted/rejected counts
+- [x] Create `agentops-server` project structure
+- [x] Add FastAPI app entrypoint and router wiring
+- [x] Add configuration and DB session management
+- [x] Add SQLAlchemy models and indexes for:
+  - [x] `projects`
+  - [x] `api_keys`
+  - [x] `raw_events` with idempotency uniqueness `(project_id, event_id)`
+  - [x] `runs`
+  - [x] `spans`
+- [x] Implement API key auth (`X-AgentOps-Key`)
+- [x] Implement `POST /v1/ingest` with:
+  - [x] batch JSON ingest
+  - [x] validation for minimal envelope fields
+  - [x] append-only write into `raw_events`
+  - [x] accepted/rejected counts
 
 ### Phase 2: Derived run model and query APIs
-- [ ] Implement normalizer service from raw events to `runs`/`spans`
-- [ ] Trigger normalizer for affected runs after ingest (MVP inline)
-- [ ] Implement `GET /v1/runs`
-- [ ] Implement `GET /v1/runs/{run_id}`
+- [x] Implement normalizer service from raw events to `runs`/`spans`
+- [x] Trigger normalizer for affected runs after ingest (MVP inline)
+- [x] Implement `GET /v1/runs`
+- [x] Implement `GET /v1/runs/{run_id}`
 
 ### Phase 3+: placeholders for next execution cycles
 - [ ] Prompt version APIs
